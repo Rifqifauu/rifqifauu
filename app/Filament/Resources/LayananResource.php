@@ -5,6 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\LayananResource\Pages;
 use App\Filament\Resources\LayananResource\RelationManagers;
 use App\Models\Layanan;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextArea;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -23,7 +27,14 @@ class LayananResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('nama')
+                    ->required(),
+                TextArea::make('detail')
+                    ->required(),
+               TextInput::make('harga')
+    ->label('Harga')
+    ->required()
+    ->prefix('Rp') // tampilkan "Rp" di depan input
             ]);
     }
 
@@ -31,7 +42,12 @@ class LayananResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nama')
+                ->searchable()->sortable(),
+                TextColumn::make('harga')
+                ->searchable()->sortable(),
+                TextColumn::make('detail')
+                ->searchable()->sortable()->wrap(),
             ])
             ->filters([
                 //
@@ -57,8 +73,6 @@ class LayananResource extends Resource
     {
         return [
             'index' => Pages\ListLayanans::route('/'),
-            'create' => Pages\CreateLayanan::route('/create'),
-            'edit' => Pages\EditLayanan::route('/{record}/edit'),
         ];
     }
 }

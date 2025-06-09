@@ -14,35 +14,19 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex space-x-6 font-medium">
-        <a @click.prevent="scrollToSection('home')" class="hover:text-purple-400 transition cursor-pointer">Home</a>
-        <a @click.prevent="scrollToSection('services')" class="hover:text-purple-400 transition cursor-pointer">Services</a>
-        <a @click.prevent="scrollToSection('portofolio')" class="hover:text-purple-400 transition cursor-pointer">Portofolio</a>
-        <a @click.prevent="scrollToSection('about')" class="hover:text-purple-400 transition cursor-pointer">About</a>
+        <a href="/" class="hover:text-purple-400 transition cursor-pointer">Home</a>
+        <a href="/layanan"class="hover:text-purple-400 transition cursor-pointer">Layanan</a>
+        <a href="/portofolio" class="hover:text-purple-400 transition cursor-pointer">Portofolio</a>
+        <a href="/tentang" class="hover:text-purple-400 transition cursor-pointer">Tentang</a>
       </nav>
 
       <!-- Hamburger Icon -->
       <button class="md:hidden focus:outline-none" @click="isMenuOpen = !isMenuOpen">
-        <svg
-          v-if="!isMenuOpen"
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"/>
+        <svg v-if="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
-        <svg
-          v-else
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"/>
+        <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
     </div>
@@ -70,45 +54,46 @@ export default {
     return {
       isDark: false,
       isMenuOpen: false,
+      scrollHandler: null,
     };
   },
   mounted() {
+    // Jalankan observer setelah delay kecil agar elemen di-DOM lengkap
     setTimeout(() => {
       this.setupIntersectionObserver();
+      this.checkCurrentSection(); // ✅ langsung deteksi apakah header di dark section
     }, 100);
+  },
+  beforeUnmount() {
+    if (this.scrollHandler) {
+      window.removeEventListener("scroll", this.scrollHandler);
+    }
   },
   methods: {
     setupIntersectionObserver() {
       const darkSections = document.querySelectorAll(".dark-section");
-      
       if (darkSections.length === 0) return;
 
-      // Observer untuk dark sections dengan detection point di atas navbar
       const observer = new IntersectionObserver(
         (entries) => {
           let shouldBeDark = false;
-          
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               shouldBeDark = true;
             }
           });
-          
           this.isDark = shouldBeDark;
         },
         {
           root: null,
-          rootMargin: "-80px 0px 0px 0px", // Deteksi 80px dari atas (sekitar posisi navbar)
-          threshold: 0
+          rootMargin: "-80px 0px 0px 0px", // disesuaikan dengan tinggi navbar
+          threshold: 0,
         }
       );
 
-      // Observasi hanya dark sections
-      darkSections.forEach((section) => {
-        observer.observe(section);
-      });
+      darkSections.forEach((section) => observer.observe(section));
 
-      // Backup scroll listener untuk kasus edge
+      // Backup: scroll handler untuk memastikan perubahan deteksi
       let ticking = false;
       this.scrollHandler = () => {
         if (!ticking) {
@@ -119,31 +104,24 @@ export default {
           ticking = true;
         }
       };
-
-      window.addEventListener('scroll', this.scrollHandler, { passive: true });
-      
-      // Initial check
-      this.checkCurrentSection();
+      window.addEventListener("scroll", this.scrollHandler, { passive: true });
     },
 
     checkCurrentSection() {
-      // Posisi tepat di mana navbar berada (sekitar 80px dari atas)
-      const navbarPosition = window.scrollY + 80;
+      const navbarPosition = window.scrollY + 80; // posisi kira-kira navbar
       const darkSections = document.querySelectorAll(".dark-section");
-      
+
       let isInDarkSection = false;
-      
       darkSections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const sectionTop = rect.top + window.scrollY;
         const sectionBottom = sectionTop + rect.height;
-        
-        // Cek apakah posisi navbar berada di dalam dark section
+
         if (navbarPosition >= sectionTop && navbarPosition <= sectionBottom) {
           isInDarkSection = true;
         }
       });
-      
+
       this.isDark = isInDarkSection;
     },
 
@@ -157,28 +135,13 @@ export default {
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
-          let yOffset = 0;
-
-          // Atur offset khusus untuk section tertentu
-          if (id === 'home') {
-            yOffset = -100; // home biasanya ketutupan navbar
-          } else {
-            yOffset = -25; // section lain bisa offset ringan atau 0
-          }
-
+          let yOffset = id === "home" ? -100 : -25;
           const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          window.scrollTo({ top: y, behavior: "smooth" });
         }
       }, 100);
-    }
+    },
   },
-
-  beforeUnmount() {
-    // Cleanup scroll listener
-    if (this.scrollHandler) {
-      window.removeEventListener('scroll', this.scrollHandler);
-    }
-  }
 };
 </script>
 

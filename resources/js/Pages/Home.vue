@@ -84,12 +84,13 @@
                       <div class="w-3 h-3 bg-green-400 rounded-full"></div>
                     </div>
                     <div class="flex-1 bg-white rounded-lg px-3 py-1 text-xs text-gray-500">
-                      yourwebsite.com
+                      jasawebsite{{ lokasi }}.com
                     </div>
                   </div>
                   
                   <!-- Mock content -->
                   <div class="p-6 space-y-4">
+                    <div class="h-4 text-sm text-gray-400">Jasa Pembuatan Website {{ lokasi || 'Kebumen' }}</div>
                     <div class="h-4 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full"></div>
                     <div class="h-4 bg-gradient-to-r from-gray-200 to-blue-200 rounded-full w-3/4"></div>
                     <div class="h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl"></div>
@@ -132,7 +133,7 @@
         <!-- Service Cards -->
         <div class="grid md:grid-cols-3 gap-8" :data-aos-delay="index * 200"
                data-aos="fade-up">
-         <div v-for="(service, index) in services" :key="index"
+         <div v-for="(layanan, index) in layanan" :key="index"
      class="group relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 
             hover:bg-white/20 transform transition duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] 
             hover:scale-[1.025] hover:shadow-2xl "
@@ -140,15 +141,14 @@
                >
         
             <!-- Content -->
-            <h3 class="text-2xl font-bold text-white mb-4">{{ service.title }}</h3>
-            <p class="text-white/80 mb-6 leading-relaxed">{{ service.description }}</p>
+            <h3 class="text-2xl font-bold text-white mb-4">{{ layanan.nama }}</h3>
+            <p class="text-white/80 mb-6 leading-relaxed">{{ layanan.detail }}</p>
             
 
             
             <!-- Price -->
             <div class="mb-6">
-              <div class="text-2xl font-bold text-white">{{ service.price }}</div>
-              <div class="text-white/60 text-sm">{{ service.duration }}</div>
+              <div class="text-2xl font-bold text-white">Rp{{ layanan.harga }}</div>
             </div>
             
             <!-- CTA Button -->
@@ -159,92 +159,50 @@
         </div>
       </div>
     </section>
-   <section id="portofolio" class="relative py-24 px-6 lg:px-16">
+   <section id="portofolio" class="relative py-16 px-6 lg:px-10">
   <div class="max-w-7xl mx-auto">
-    <h3 class="text-3xl font-semibold text-center mb-12" data-aos="fade-up">Portofolio</h3>
+    <h3 class="text-3xl font-semibold text-center mb-4" data-aos="fade-up">Portofolio</h3>
+    <p class="text-center mb-8 text-lg">Berikut Ini  adalah beberapa portofolio atau hasil pengerjaan dari jasa pembuatan website {{ lokasi || 'Kebumen' }} </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+  <div 
+    v-for="(item, index) in portofolio" 
+    :key="index"
+    class="flex flex-col justify-between bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 text-left"
+    data-aos="fade-up" 
+    :data-aos-delay="100 * index"
+  >
+    <img 
+      :src="`/storage/${item.gambar}`" 
+      :alt="`Portofolio Jasa Pembuatan Website ${lokasi || 'Kebumen'}`" 
+      class="w-full h-40 object-cover rounded-lg mb-4"
+      @error="event.target.src = '/images/placeholder.jpg'" 
+    />
 
- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" v-for="(item, index) in portofolio" :key="index">
-  <!-- Card Template -->
-  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 text-left" data-aos="fade-up" data-aos-delay="100">
-    <img :src="`/storage/${item.gambar}`" alt="Website Sekolah" class="w-full h-40 object-cover rounded-lg mb-4" />
-    <h4 class="text-lg font-semibold mb-2">{{ item.nama }}</h4>
-    <p class="text-sm text-gray-600 mb-4">{{ item.deskripsi }}</p>
-<button class="font-bold relative group text-blue-800  py-2 transition">
-  Lihat Detail 
-  <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-</button>  </div>
-</div>
+    <!-- Konten utama isi card -->
+    <div class="flex-1">
+      <h4 class="text-lg font-semibold mb-2">{{ item.nama }}</h4>
+      <p class="text-sm text-gray-600 mb-4">{{ item.deskripsi }}</p>
+    </div>
 
-
-  
+    <!-- Tombol -->
+    <button class="text-left mt-auto font-bold relative group text-blue-800 py-2 transition">
+      Lihat Detail 
+      <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-800 transition-all duration-300 group-hover:w-1/2"></span>
+    </button>
   </div>
+</div>
+</div>
   </section>
- <section id="about" class="relative py-24 px-6 lg:px-16 text-white dark-section">
-  <!-- Background -->
-  <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 z-0"></div>
-
-  <div class="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10 items-center">
-    <!-- Left: Image -->
-    <div data-aos="fade-right" data-aos-delay="200" data-aos-offset="100" 
-         class="md:col-span-1 flex flex-col items-center bg-white/10 px-10 py-10 rounded-2xl backdrop-blur-md border border-white/20 shadow-xl space-y-4 hover:scale-105 transition-transform duration-500">
-      <img 
-        src="/public/images/profil.png" 
-        alt="Foto Profil" 
-        class="w-64 rounded-2xl shadow-2xl bg-gray-400/40 transition-transform duration-300 hover:scale-110"
-      />
-
-      <!-- Social Links -->
-      <div class="flex space-x-6 mt-6">
-        <a href="https://instagram.com/rifqifauu" target="_blank" class="text-white hover:text-pink-400 text-3xl transition-colors duration-300">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://wa.me/6281325243608" target="_blank" class="text-white hover:text-green-400 text-3xl transition-colors duration-300">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https:/tiktok.com/" target="_blank" class="text-white hover:text-black text-3xl transition-colors duration-300">
-          <i class="fab fa-tiktok"></i>
-        </a>
-        <a href="https://linkedin.com/in/Rifqifauu" target="_blank" class="text-white hover:text-blue-400 text-3xl transition-colors duration-300">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- Right: About and Experience -->
-    <div data-aos-delay="300" data-aos-offset="100" class="md:col-span-2 space-y-8">
-      <!-- Nama -->
-      <div>
-        <h2 class="text-2xl md:text-5xl font-extrabold mb-2 tracking-wide drop-shadow-lg">Rifqi Nur Fauzi</h2>
-        <p class="text-gray-300 text-lg italic">Fullstack Web Developer</p>
-      </div>
-
-      <div data-aos="fade-up" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-pink-400">
-          <h4 class="text-md font-semibold mb-2">Fullstack Developer - Balai Layanan Perpustakaan DPAD DIY</h4>
-          <p class="text-xs text-gray-300">Jan 2025 - Feb 2025</p>
-        </div>
-
-        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-green-400">
-          <h4 class="text-md font-semibold mb-2">Freelance Web Developer</h4>
-          <p class="text-xs text-gray-300">Mei 2025 - Sekarang</p>
-        </div>
-
-        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-blue-400">
-          <h4 class="text-md font-semibold mb-2">Mahasiswa Informatika - Universitas Jenderal Soedirman</h4>
-          <p class="text-xs text-gray-300">2022 - Sekarang</p>
-        </div>
-
-        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-purple-400">
-          <h4 class="text-md font-semibold mb-2">Penerima Beasiswa Bank Indonesia</h4>
-          <p class="text-xs text-gray-300">2024</p>
-        </div>
-
-        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-yellow-400">
-          <h4 class="text-md font-semibold mb-2">Content Writer - Promedia Teknologi</h4>
-          <p class="text-xs text-gray-300">2022 - 2023</p>
-        </div>
-      </div>
-    </div>
+ <section class="py-12 px-6 lg:px-12 bg-blue-50" id="kontak">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-6">Hubungi Kami</h2>
+    <p class="text-gray-600 mb-8">Punya pertanyaan? Kirimkan pesan Anda, kami akan segera merespon!</p>
+    <form class="grid grid-cols-1 gap-4">
+      <input type="text" placeholder="Nama Anda" class="p-4 rounded-xl border border-gray-300">
+      <input type="email" placeholder="Email" class="p-4 rounded-xl border border-gray-300">
+      <textarea rows="4" placeholder="Pesan" class="p-4 rounded-xl border border-gray-300"></textarea>
+      <button class="bg-blue-800 text-white py-4 rounded-xl hover:bg-blue-700 transition">Kirim Pesan</button>
+    </form>
   </div>
 </section>
 
@@ -272,40 +230,13 @@ export default {
         { icon: '📱', text: 'Mobile Friendly' },
         { icon: '📈', text: 'SEO Optimized' },
       ],
-            
-      services: [
-      
-        {
-          title: 'Landing Page',
-          description: 'Solusi cepat dan elegan untuk tampil online. Perfect untuk promosi produk atau layanan utama dengan konversi tinggi.',
-          
-          price: 'Rp499.000',
-          duration: 'Selesai 1-3 hari',
-          popular: false
-        },
-        {
-          title: 'Company Profile',
-          description: 'Website profesional untuk membangun kredibilitas bisnis. Tampilkan identitas perusahaan dengan sempurna.',
-        
-          price: 'Rp1.249.000',
-          duration: 'Selesai 3-5 hari',
-          popular: true
-        },
-        {
-          title: 'Website Sekolah',
-          description: 'Website sekolah yang dilengkapi dengan berbagai fitur unggulan seperti penerbitan artikel, pengumuman, hingga galeri kegiatan.',
-         
-          price: 'Rp1.749.000',
-          duration: 'Selesai 7-14 hari',
-          popular: false
-        }
-      ]
     }
   },
   
   mounted() {
   document.title = `Jasa Pembuatan Website ${this.lokasi ||  ''}`;
      console.log(this.portofolio);
+     console.log(this.layanan);
     // Initialize AOS if available
     if (typeof AOS !== 'undefined') {
       AOS.init({

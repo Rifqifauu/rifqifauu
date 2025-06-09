@@ -8,7 +8,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative z-10 min-h-screen flex items-center px-6 lg:px-16">
+    <section id ="home" class="relative z-10 min-h-screen flex items-center px-6 lg:px-16">
       <div class="max-w-7xl mx-auto w-full">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <!-- Left Content -->
@@ -18,17 +18,23 @@
               <h1 class="text-4xl lg:text-6xl font-bold leading-tight" data-aos="fade-up" data-aos-delay="200">
                 <span class="text-gray-900">Jasa Website</span>
                 <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent block animate-pulse">
-                  Kebumen
+{{ lokasi || 'Kebumen' }}
                 </span>
               </h1>
               
-              <p class="text-lg  text-gray-600 leading-relaxed max-w-2xl" data-aos="fade-up" data-aos-delay="400">
-                Wujudkan <span class="font-semibold text-blue-600">impian digital</span> Anda dengan website profesional yang modern, responsif, dan optimized untuk bisnis masa depan.
-              </p>
+            <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+  Kami menyediakan <span class="font-semibold text-blue-600">jasa pembuatan website</span> di 
+  <span class="font-bold text-black">{{ lokasi || 'Kebumen' }}</span>. 
+  Wujudkan <span class="font-semibold text-blue-600">impian digital</span> Anda dengan website yang 
+  <span class="font-semibold">profesional</span>, <span class="font-semibold">modern</span>, 
+  <span class="font-semibold">responsif</span>, dan <span class="font-semibold">SEO-friendly</span> untuk 
+  meningkatkan daya saing bisnis Anda di era digital.
+</p>
+
             </div>
 
             <!-- Features List -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="grid grid-cols-2  gap-4" data-aos="fade-up" data-aos-delay="600">
               <div v-for="(feature, index) in features" :key="index" 
                    class="flex items-center space-x-3 p-3 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/20"
                    :data-aos-delay="700 + (index * 100)"
@@ -36,7 +42,7 @@
                 <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
                   <span class="text-white text-sm">{{ feature.icon }}</span>
                 </div>
-                <span class="font-medium text-gray-700">{{ feature.text }}</span>
+                <span class="font-medium md:text-sm text-xs text-gray-700">{{ feature.text }}</span>
               </div>
             </div>
 
@@ -45,7 +51,7 @@
               <button @click="scrollToServices" 
                       class="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
                 <span class="relative z-10 flex items-center space-x-2">
-                  <span>Mulai Sekarang</span>
+                  <span>Pesan Sekarang</span>
                   <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                   </svg>
@@ -60,7 +66,7 @@
           </div>
 
           <!-- Right Content - Hero Image -->
-          <div class="relative" data-aos="fade-left" data-aos-delay="500">
+          <div class="hidden md:block relative" data-aos="fade-up" data-aos-delay="500">
             <div class="relative z-10 transform hover:scale-105 transition-transform duration-700">
               <!-- Main illustration container -->
               <div class="relative bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-2xl border border-white/20">
@@ -104,7 +110,7 @@
     </section>
 
     <!-- Services Section -->
-    <section ref="servicesSection" class="relative py-24 px-6 lg:px-16 dark-section">
+    <section id="services" ref="servicesSection" class="relative py-24 px-6 lg:px-16 dark-section">
       <!-- Background -->
       <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900"></div>
               <div class="absolute inset-0 opacity-10">
@@ -114,14 +120,12 @@
       <div class="relative z-10 max-w-7xl mx-auto">
         <!-- Section Header -->
         <div class="text-center mb-16" data-aos="fade-up">
-          <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
-            <span class="text-white/80 text-sm font-medium">Layanan Premium</span>
-          </div>
+        
           <h2 class="text-4xl lg:text-6xl font-bold text-white mb-6">
             Paket <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Terbaik</span>
           </h2>
-          <p class="text-xl text-white/80 max-w-2xl mx-auto">
-            Pilih paket yang sesuai dengan kebutuhan bisnis Anda. Semua paket sudah termasuk hosting dan domain gratis.
+          <p class="text-md md:text-xl text-white/80 max-w-2xl mx-auto">
+            Pilih paket yang sesuai dengan kebutuhan bisnis Anda. Semua paket jasa pembuatan website <span class="text-purple-400"> {{lokasi || 'Kebumen'}}</span> sudah termasuk hosting dan domain untuk 1 tahun.
           </p>
         </div>
 
@@ -159,48 +163,88 @@
   <div class="max-w-7xl mx-auto">
     <h3 class="text-3xl font-semibold text-center mb-12" data-aos="fade-up">Portofolio</h3>
 
- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+ <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" v-for="(item, index) in portofolio" :key="index">
   <!-- Card Template -->
   <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 text-left" data-aos="fade-up" data-aos-delay="100">
-    <img src="/public/images/project-sekolah.png" alt="Website Sekolah" class="w-full h-40 object-cover rounded-lg mb-4" />
-    <h4 class="text-lg font-semibold mb-2">Website Sekolah</h4>
-    <p class="text-sm text-gray-600 mb-4">Portal resmi sekolah untuk informasi, berita, dan layanan siswa-guru.</p>
+    <img :src="`/storage/${item.gambar}`" alt="Website Sekolah" class="w-full h-40 object-cover rounded-lg mb-4" />
+    <h4 class="text-lg font-semibold mb-2">{{ item.nama }}</h4>
+    <p class="text-sm text-gray-600 mb-4">{{ item.deskripsi }}</p>
 <button class="font-bold relative group text-blue-800  py-2 transition">
   Lihat Detail 
   <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
 </button>  </div>
-
-  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 text-left" data-aos="fade-up" data-aos-delay="200">
-    <img src="/public/images/project-magang.png" alt="Website Magang" class="w-full h-40 object-cover rounded-lg mb-4" />
-    <h4 class="text-lg font-semibold mb-2">Manajemen Magang</h4>
-    <p class="text-sm text-gray-600 mb-4">Platform untuk mengelola data peserta magang, absensi, dan laporan harian.</p>
-<button class="font-bold relative group text-blue-800 py-2 transition">
-  Lihat Detail 
-  <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-</button>  </div>
-
-  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 text-left" data-aos="fade-up" data-aos-delay="300">
-    <img src="/public/images/project-organisasi.png" alt="Website Organisasi" class="w-full h-40 object-cover rounded-lg mb-4" />
-    <h4 class="text-lg font-semibold mb-2">Website PSHT</h4>
-    <p class="text-sm text-gray-600 mb-4">Media informasi kegiatan organisasi, profil anggota, dan publikasi resmi.</p>
-<button class="font-bold relative group text-blue-800  py-2 transition">
-  Lihat Detail 
-  <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-</button>  </div>
-
-  <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 text-left" data-aos="fade-up" data-aos-delay="400">
-    <img src="/public/images/project-nectar.png"  alt="Proyek 4" class="w-full h-40 object-cover rounded-lg mb-4" />
-    <h4 class="text-lg font-semibold mb-2">UI/UX Nectar</h4>
-    <p class="text-sm text-gray-600 mb-4">Pengembangan desain antarmuka aplikasi untuk pencarian kerja berbasis mobile.</p>
-<button class="font-bold relative group text-blue-800 py-2 transition">
-  Lihat Detail 
-  <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-800 transition-all duration-300 group-hover:w-full"></span>
-</button>
-  </div>
 </div>
 
 
   
+  </div>
+  </section>
+ <section id="about" class="relative py-24 px-6 lg:px-16 text-white dark-section">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 z-0"></div>
+
+  <div class="relative grid grid-cols-1 md:grid-cols-3 gap-10 z-10 items-center">
+    <!-- Left: Image -->
+    <div data-aos="fade-right" data-aos-delay="200" data-aos-offset="100" 
+         class="md:col-span-1 flex flex-col items-center bg-white/10 px-10 py-10 rounded-2xl backdrop-blur-md border border-white/20 shadow-xl space-y-4 hover:scale-105 transition-transform duration-500">
+      <img 
+        src="/public/images/profil.png" 
+        alt="Foto Profil" 
+        class="w-64 rounded-2xl shadow-2xl bg-gray-400/40 transition-transform duration-300 hover:scale-110"
+      />
+
+      <!-- Social Links -->
+      <div class="flex space-x-6 mt-6">
+        <a href="https://instagram.com/rifqifauu" target="_blank" class="text-white hover:text-pink-400 text-3xl transition-colors duration-300">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/6281325243608" target="_blank" class="text-white hover:text-green-400 text-3xl transition-colors duration-300">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https:/tiktok.com/" target="_blank" class="text-white hover:text-black text-3xl transition-colors duration-300">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://linkedin.com/in/Rifqifauu" target="_blank" class="text-white hover:text-blue-400 text-3xl transition-colors duration-300">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: About and Experience -->
+    <div data-aos-delay="300" data-aos-offset="100" class="md:col-span-2 space-y-8">
+      <!-- Nama -->
+      <div>
+        <h2 class="text-2xl md:text-5xl font-extrabold mb-2 tracking-wide drop-shadow-lg">Rifqi Nur Fauzi</h2>
+        <p class="text-gray-300 text-lg italic">Fullstack Web Developer</p>
+      </div>
+
+      <div data-aos="fade-up" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-pink-400">
+          <h4 class="text-md font-semibold mb-2">Fullstack Developer - Balai Layanan Perpustakaan DPAD DIY</h4>
+          <p class="text-xs text-gray-300">Jan 2025 - Feb 2025</p>
+        </div>
+
+        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-green-400">
+          <h4 class="text-md font-semibold mb-2">Freelance Web Developer</h4>
+          <p class="text-xs text-gray-300">Mei 2025 - Sekarang</p>
+        </div>
+
+        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-blue-400">
+          <h4 class="text-md font-semibold mb-2">Mahasiswa Informatika - Universitas Jenderal Soedirman</h4>
+          <p class="text-xs text-gray-300">2022 - Sekarang</p>
+        </div>
+
+        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-purple-400">
+          <h4 class="text-md font-semibold mb-2">Penerima Beasiswa Bank Indonesia</h4>
+          <p class="text-xs text-gray-300">2024</p>
+        </div>
+
+        <div data-aos="fade-up" class="bg-white/10 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-400 border border-white/30 hover:border-yellow-400">
+          <h4 class="text-md font-semibold mb-2">Content Writer - Promedia Teknologi</h4>
+          <p class="text-xs text-gray-300">2022 - 2023</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -214,6 +258,11 @@ import AppLayout from '@/Layout/AppLayout.vue';
 
 export default {
   layout: AppLayout,
+  props: {
+    layanan: Object,
+    portofolio: Object,
+    lokasi: String,
+  },
   
   data() {
     return {
@@ -255,13 +304,17 @@ export default {
   },
   
   mounted() {
+  document.title = `Jasa Pembuatan Website ${this.lokasi ||  ''}`;
+     console.log(this.portofolio);
     // Initialize AOS if available
     if (typeof AOS !== 'undefined') {
       AOS.init({
         duration: 1000,
+        easing: 'ease-in-out',
         once: true,
-        offset: 100
-      });
+        offset: 50,
+        delay: 100,
+      })
     }
   },
   
@@ -279,6 +332,10 @@ export default {
 button:hover {
   cursor: pointer;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 
 .animation-delay-2000 {
   animation-delay: 2s;

@@ -1,5 +1,11 @@
 <template>
- 
+  <footer class="bg-white py-6 px-4 h-32 text-center">
+<p class="text-sm text-gray-500 text-center mt-10">
+  &copy; 2025 <span class="font-medium">Rifqi Nur Fauzi</span>. Jasa Pembuatan Website Profesional.
+</p>
+  <p></p>
+</footer>
+
 </template>
 
 <script>
@@ -9,13 +15,5 @@ export default {
 </script>
 
 <style scoped>
-.app-footer {
-  background-color: #35495e;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
+
 </style>

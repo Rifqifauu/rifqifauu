@@ -1,0 +1,68 @@
+{
+  "public/images/profil.png": {
+    "file": "assets/profil-BJMAhKyU.png",
+    "src": "public/images/profil.png"
+  },
+  "public/images/project-magang.png": {
+    "file": "assets/project-magang-DfP4GsBY.png",
+    "src": "public/images/project-magang.png"
+  },
+  "public/images/project-nectar.png": {
+    "file": "assets/project-nectar-DqNKvElJ.png",
+    "src": "public/images/project-nectar.png"
+  },
+  "public/images/project-organisasi.png": {
+    "file": "assets/project-organisasi-Buequ8WM.png",
+    "src": "public/images/project-organisasi.png"
+  },
+  "public/images/project-sekolah.png": {
+    "file": "assets/project-sekolah-Czo7kJFt.png",
+    "src": "public/images/project-sekolah.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-RXTPyNUH.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/Pages/Home.vue": {
+    "file": "assets/Home-CieVKEPO.js",
+    "name": "Home",
+    "src": "resources/js/Pages/Home.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/Home-BEzK_DGY.css"
+    ],
+    "assets": [
+      "assets/project-sekolah-Czo7kJFt.png",
+      "assets/project-magang-DfP4GsBY.png",
+      "assets/project-organisasi-Buequ8WM.png",
+      "assets/project-nectar-DqNKvElJ.png",
+      "assets/profil-BJMAhKyU.png"
+    ]
+  },
+  "resources/js/Pages/Login.vue": {
+    "file": "assets/Login-TyS68SjE.js",
+    "name": "Login",
+    "src": "resources/js/Pages/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-OHL8vtoJ.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Home.vue",
+      "resources/js/Pages/Login.vue"
+    ],
+    "css": [
+      "assets/app-TmRyXAmV.css"
+    ]
+  }
+}

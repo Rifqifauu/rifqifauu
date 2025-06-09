@@ -1,8 +1,6 @@
 /.phpunit.cache
 /node_modules
-/public/build
 /public/hot
-
 /vendor
 .phpunit.result.cache
 Homestead.json
@@ -13,3 +11,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+.env
+.env.local
+.env.*.backup
+vite.config.js
